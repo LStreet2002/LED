@@ -41,9 +41,10 @@
   <body>
     <div class="button">
       <h1>This is a button</h1>
-      <a href="/on"><button id="LED" class="LED button1">On</button></a>
-      <a href="/off"><button id="LED" class="LED button2">Off</button></a>
-
+      <form action="/led" method="post">
+        <input type="submit" name="button" value="On" />
+        <input type="submit" name="button" value="Off" />
+      </form>
       <h1>Press on</h1>
     </div>
   </body>
