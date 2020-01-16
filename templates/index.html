@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Light Switch</title>
-    <link rel="stylesheet" href="switchoff.css" />
-    <style>
-      body {
-        background-color: #262626;
-      }
-      .button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      button {
-        height: 100px;
-        width: 100px;
-      }
-      h1 {
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="button">
-      <h1>This is a button</h1>
-      <a href="/on"><button id="LED" class="LED">On</button></a>
-      <a href="/off"><button id="LED" class="LED">Off</button></a>
+{% block index %}
 
-      <h1>Press the button</h1>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Light Switch</title>
+
+  {% block style %}
+  <style>
+    body {
+      background-color: #262626;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #on {
+      height: 100px;
+      width: 100px;
+    }
+
+    #off {
+      height: 100px;
+      width: 100px;
+    }
+
+    h1 {
+      color: white;
+    }
+  </style>
+  {% endblock %}
+</head>
+
+<body>
+  <div class="button">
+    <h1>This is a button</h1>
+    <a href="/on"><button id="on" class="LED">On</button></a>
+    <a href="/off"><button id="off" class="LED">Off</button></a>
+
+    <h1>Press the button</h1>
+  </div>
+</body>
+{% endblock %}
+
 </html>
