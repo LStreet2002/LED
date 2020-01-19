@@ -41,9 +41,9 @@
   <body>
     <div class="button">
       <h1>This is a button</h1>
-      <form action="/led" method="post">
-        <input type="submit" name="button" value="On" class="button1" />
-        <input type="submit" name="button" value="Off" class="button2" />
+      <form method="post" action="/toggle">
+        <input type="checkbox" name="button"/>
+        <input type="submit"/>
       </form>
       <h1>Press on</h1>
     </div>
