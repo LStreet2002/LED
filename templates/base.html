@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 {% block index %}
+<!DOCTYPE html>
+<html lang="en" onload="process()">
+
 
 <head>
   <meta charset="UTF-8" />
@@ -8,45 +9,67 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Light Switch</title>
 
-  {% block style %}
+
   <style>
     body {
       background-color: #262626;
     }
 
     .button {
+      margin-top: 25rem;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
 
-    #on {
-      height: 100px;
-      width: 100px;
+    #switch {
+      font-size: 2rem;
     }
 
-    #off {
-      height: 100px;
-      width: 100px;
-    }
+
 
     h1 {
       color: white;
     }
+
+    #info {}
   </style>
-  {% endblock %}
+
 </head>
 
 <body>
   <div class="button">
     <h1>This is a button</h1>
-    <a href="/on"><button id="on" class="LED">On</button></a>
-    <a href="/off"><button id="off" class="LED">Off</button></a>
+    <button id="switch" onclick=post()>Click</button></a>
+    <br>
 
-    <h1>Press the button</h1>
+
+    {% block switch %} <h1 id="info">Press the button</h1> {% endblock %}
   </div>
-</body>
+</body>{% block script %}
+<script>
+  var request = new XMLHttpRequest();
+  function process(e) {
+    request.open('GET', "", true);
+    request.send();
+
+    request.onreadystatechange = processRequest;
+
+    if (request.readyState == 4 && request.status == 200) {
+      var response = JSON.parse(request.responseText);
+      console.log(response)
+    };
+  }
+  function post() {
+    request.open("POST", "", true);
+    var json = document.getElementById("switch");
+    console.log(JSON.stringify({ led: json }));
+    request.send(JSON.stringify({ led: json }));
+  }
+
+</script>
 {% endblock %}
 
 </html>
+{% endblock %}

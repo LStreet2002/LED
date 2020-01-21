@@ -1,32 +1,13 @@
-{% extends "index.html" %}
-{% block style %}
-<style>
-    body {
-        background-color: #262626;
-    }
+{% extends "base.html" %}
 
-    .button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
 
-    #on {
-        height: 100px;
-        width: 100px;
+{% block switch %} <h1> The light is off</h1> {% endblock %}
 
-    }
+{% block script %}
+<script>
 
-    #off {
-        height: 100px;
-        width: 100px;
-        background-color: rgb(163, 162, 162);
 
-    }
 
-    h1 {
-        color: white;
-    }
-</style>
+
+</script>
 {% endblock %}
