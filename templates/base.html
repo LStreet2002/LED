@@ -45,28 +45,33 @@
     <br>
 
 
-    {% block switch %} <h1 id="info">Press the button</h1> {% endblock %}
+    {% block switch %} <h1 id="true" class="switch">Press the button</h1> {% endblock %}
   </div>
 </body>{% block script %}
 <script>
-  var request = new XMLHttpRequest();
-  function process(e) {
-    request.open('GET', "", true);
-    request.send();
 
-    request.onreadystatechange = processRequest;
 
-    if (request.readyState == 4 && request.status == 200) {
-      var response = JSON.parse(request.responseText);
-      console.log(response)
-    };
-  }
+
   function post() {
-    request.open("POST", "", true);
-    var json = document.getElementById("switch");
-    console.log(JSON.stringify({ led: json }));
-    request.send(JSON.stringify({ led: json }));
+    var request = new XMLHttpRequest();
+    request.open("POST", "status", true);
+    request.setRequestHeader("Content-Type", "application/json")
+
+    var json = document.querySelector(".switch").id;
+
+    var info = JSON.stringify({ "led": json })
+
+    console.log(info);
+
+    request.send(info);
+
+    switch (document.querySelector(".switch").id) {
+      case "True": (document.querySelector(".switch").id = "False");
+        break;
+      case "False": (document.querySelector(".switch").id = "True")
+    }
   }
+
 
 </script>
 {% endblock %}

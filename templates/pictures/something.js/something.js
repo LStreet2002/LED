@@ -3,12 +3,16 @@ var button = document.querySelector(".select")
 var bvalue = { led: button.id }
 
 
-function post(address = "") {
+function post(light) {
     var post = new XMLHttpRequest();
-    post.open('POST', "http/json", true);
+    post.open('POST', "http/status", true);
     if (type == "POST") {
-        post.send(JSON.stringify(bvalue));
-        console.log(bvalue)
+        post.send(JSON.stringify({
+            "led": light
+        }));
+        xhr.send(da)
+        console.log(bvalue);
+
     }
 
 }

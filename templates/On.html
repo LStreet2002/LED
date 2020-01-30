@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
-{% block switch %} <h1 id="info">The light is on</h1> {% endblock %}
+{% block switch %} <h1 id="true" class="switch">The light is on</h1> {% endblock %}
 
 
-{% block script %}
+</body>{% block script %}
+<script>
+    var request = new XMLHttpRequest();
+
+    function post() {
+        request.open("POST", "status", true);
+        var json = document.querySelector(".switch").id;
+        console.log(JSON.stringify({ "led": json }));
+        request.send(JSON.stringify({ "led": json }));
+    }  </script>
 
 {% endblock %}

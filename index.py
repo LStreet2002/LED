@@ -1,28 +1,37 @@
-import RPi.GPIO as GPIO
-from flask import Flask, render_template
+
+from sense_hat import sense_hat
+from flask import Flask, render_template, request, json
 
 app = Flask(__name__)
-
+led=False
 
 @app.route('/')
-def index():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(18, GPIO.OUT)
-    return render_template('index.html')
+def start():
+    return render_template('base.html')
 
+@app.route('/status', methods=['POST','GET'])
+def status():
+    global led
+    if request.method=="POST":
+        content = request.get_json()
+        led=content['led']
+        if(led):
+            print("LED on")
+            sense= SenseHat()
 
-@app.route('/on')
-def turnOn():
-    GPIO.output(18, GPIO.HIGH)
-    return render_template('index.html')
+            r= 255
+            g= 255
+            b= 255
 
+             sense.clear((r, g, b))
+        else:
+            print("LED off")
+             sense.clear(())
+           
 
-@app.route('/off')
-def turnOff():
-    GPIO.output(18, GPIO.LOW)
-    return render_template('index.html')
+     
+            # LED off
+        return "End"
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    if request.method=="GET":
+        return str(led)
